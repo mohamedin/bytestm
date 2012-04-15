@@ -1,0 +1,71 @@
+The project is an eclipse project
+
+Main steps to build JikesRVM for the first time
+------------------------------------------------
+
+#Install JDK & Healper tools
+sudo apt-get update
+sudo apt-get install openjdk-6-jdk
+sudo apt-get install ant bison ecj gawk libasm-java
+
+#Install Eclipse, subversion (if you want to change the code)
+sudo apt-get install eclipse 
+sudo apt-get install subversion
+
+#If System is 64 bits, add the following:
+sudo apt-get install libc6-dev-i386
+sudo apt-get install ia32-libs
+cd /usr/lib32/
+sudo ln -s libstdc++.so.6 libstdc++.so
+
+cd $WORKSPACE/JikesRVM
+cp .ant.properties.in .ant.properties
+gedit .ant.properties &
+# Change host.name to your architecture one from:
+ls build/hosts
+ls build/config
+
+#it is tested on x86_64-linux host AND BaseBaseMarkSweep configuration
+
+# When all installs are done, build:
+ant clean
+ant
+
+============================================================================
+Coding with ByteSTM
+-------------------
+
+Surround the code that needs to run in a transaction with:
+
+try{stm.STM.xBegin();
+
+//Transaction code
+
+}catch(stm.STMException e){}finally{stm.STM.xCommit();}
+
+
+Many examples are found in the benchmarks in the "test" directory. It has
+macro benchmarks and STMAP. These benchmarks are from Deuce project (https://sites.google.com/site/deucestm/)
+============================================================================
+Using ByteSTM
+-------------
+
+# If you make changes to the JVM
+ant
+
+# Running program using VM with STM support
+./dist/BaseBaseMarkSweep_x86_64-linux/rvm Test #any class starting with Test has STM support automatically 
+#You can add STM support using the argument -X:hydra:package=[package name] 
+./dist/BaseBaseMarkSweep_x86_64-linux/rvm -X:hydra:package=org.deuce.benchmark org.deuce.benchmark.Driver -n 4  org.deuce.benchmark.bank.Benchmark -w 20 -r 50
+
+#Note that BaseBaseMarkSweep_x86_64-linux is directory name based on the build and config from .ant.properties
+
+=============================================================================
+Modifying ByteSTM and changing STM algorithms
+---------------------------------------------
+
+Most of the changes to JikesRVM are in the package "org.jikesrvm.parallelizer.stm".
+STM active algorithm is in the class "org.jikesrvm.parallelizer.stm.STM".
+Other implementations are in the package "org.jikesrvm.parallelizer.stm.alternatives". Replace "org.jikesrvm.parallelizer.stm.STM" with any of them and rename the class to STM.
+
+Also, we did changes to the class "org.jikesrvm.compilers.baseline.TemplateCompilerFramework" to add transactional support to memory load/store bytecode instructions and xBegin/xCommit

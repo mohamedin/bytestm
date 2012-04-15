@@ -1,0 +1,16 @@
+main() {
+  int a = 0;
+
+  if (a == 0) {
+    print("a == 0: correct");
+  } else {
+    print("ERROR");
+  }
+
+  if (a != 0) {
+    print("ERROR");
+  } else {
+    print("a == 0: correct");
+  }
+}
+

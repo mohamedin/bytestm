@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="**/ppc/**|org/jikesrvm/tools/header_gen/GenArch_ppc.java" kind="src" path="rvm/src"/>
+	<classpathentry kind="src" path="MMTk/ext/vm/jikesrvm"/>
+	<classpathentry kind="src" path="MMTk/src"/>
+	<classpathentry kind="src" path="common/options/src"/>
+	<classpathentry kind="src" path="libraryInterface/Common/src"/>
+	<classpathentry kind="src" path="libraryInterface/GNUClasspath/EPL/src"/>
+	<classpathentry kind="src" path="libraryInterface/GNUClasspath/LGPL/src"/>
+	<classpathentry kind="src" path="tools/bootImageWriter/src"/>
+	<classpathentry kind="src" path="common/vmmagic/src"/>
+	<classpathentry kind="src" path="external/tuningforklib/src"/>
+	<classpathentry kind="src" path="eclipse/gen-base"/>
+	<classpathentry kind="src" path="eclipse/gen-config"/>
+	<classpathentry kind="src" path="eclipse/gen-arch"/>
+	<classpathentry kind="src" path="test"/>
+	<classpathentry kind="src" path="Deuce/src/java"/>
+	<classpathentry kind="lib" path="eclipse/classpath.jar" sourcepath="/home/msaad/hydra/jikesrvm-3.1.0/components/classpath/97.2p8/classpath"/>
+	<classpathentry kind="lib" path="Deuce/cbbs-0.2.0.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="output" path="eclipse/bin"/>
+</classpath>
