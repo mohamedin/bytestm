@@ -430,7 +430,7 @@ final class BuildReferenceMaps implements BytecodeConstants, ClassLoaderConstant
             currBBMap[currBBStkTop] = inJSRSub ? REFERENCE : currBBMap[localNumber];
             break;
           }
-          case HYDRA_cload:
+          
           case JBC_iconst_m1:
           case JBC_iconst_0:
           case JBC_iconst_1:
@@ -1039,6 +1039,8 @@ final class BuildReferenceMaps implements BytecodeConstants, ClassLoaderConstant
             currBBStkTop = currBBStkTop + 2;
             break;
           }
+          case JBC_xBegin:
+          case JBC_xCommit:
           case JBC_ineg:
           case JBC_lneg:
           case JBC_fneg:

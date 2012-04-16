@@ -222,7 +222,8 @@ public interface BytecodeConstants {
   int JBC_goto_w = 200;
   int JBC_jsr_w = 201;
   
-  int HYDRA_cload = 210;
+  int JBC_xBegin = 210;
+  int JBC_xCommit = 211;
 
   int JBC_impdep1 = 254;
   int JBC_impdep2 = 255;

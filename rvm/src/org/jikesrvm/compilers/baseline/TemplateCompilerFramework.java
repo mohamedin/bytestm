@@ -340,12 +340,6 @@ public abstract class TemplateCompilerFramework
 
 	  int code = bcodes.nextInstruction();
       switch (code) {
-        case HYDRA_cload: {
-          int target = bcodes.readSignedInt();
-          VM.sysWriteln("target " + target);
-          asm.emitPUSH_Imm(target);
-          break;
-        }
         
         case JBC_nop: {
           if (shouldPrint) asm.noteBytecode(biStart, "nop");
@@ -1763,6 +1757,18 @@ public abstract class TemplateCompilerFramework
           break;
         }
 
+        //ByteSTM special bytecode instructions
+        case JBC_xBegin: {
+        	emit_resolved_invokestatic(xBegin);
+			xBeginIndex = biStart;//retry from the instruction after xBegin
+            break;
+        }
+        case JBC_xCommit: {
+			  emit_resolved_invokestatic(xCommit);
+  			  emit_ifne(xBeginIndex);
+           break;
+        }
+        
         case JBC_invokestatic: {
 	          ForwardReference xx = null;
 	          if (biStart == this.pendingIdx) {
